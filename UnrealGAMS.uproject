@@ -1,0 +1,13 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "{00036806-08D6-8B7B-C5E9-AF88027B135F}",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "UnrealGAMS",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
