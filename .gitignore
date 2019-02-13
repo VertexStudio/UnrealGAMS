@@ -77,3 +77,4 @@ DerivedDataCache/*
 /.vscode
 /*.code-workspace
 /Makefile
+Content/Environments
