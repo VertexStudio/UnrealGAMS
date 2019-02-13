@@ -14,8 +14,9 @@ fi
 
 echo "Downloading..."
 wget "$ENVIRONMENT_URL" -O environment.zip
-mv ./environment.zip ./Content
-pushd ./Content
+mkdir -p ./Content/Environments
+mv ./environment.zip ./Content/Environments
+pushd ./Content/Environments
 unzip environment.zip
 rm environment.zip
 popd
