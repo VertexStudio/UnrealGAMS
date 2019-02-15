@@ -49,3 +49,30 @@ Run:
 ```
 ./run_editor.sh
 ```
+
+# Using Quadcopter OSC
+
+In UnrealEngine open and play map `Robots/Quadcopter/Maps/MAP_Quadcopter`.
+
+Download [Open Stage Control](https://osc.ammd.net/)
+
+```
+./open-stage-control --load $UE4_GAMS/Config/UnrealGAMS-OSC.json -d --send 127.0.0.1:5555 --port 7777
+```
+
+Or use your favorite OSC controller.
+
+### Inputs:
+
+XY velocity:
+`/agent/0/velocity/xy [f32,f32]`
+
+Z velocity:
+`/agent/0/velocity/z [f32]`
+
+
+### Outputs:
+
+Vector3 Position: `/agent/0/pos/xyz [f32,f32,f32]`
+
+Quaternion Rotation: `/agent/0/pos/xyz [f32,f32,f32,f32]`
