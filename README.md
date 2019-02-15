@@ -57,7 +57,7 @@ In UnrealEngine open and play map `Robots/Quadcopter/Maps/MAP_Quadcopter`.
 Download [Open Stage Control](https://osc.ammd.net/)
 
 ```
-./open-stage-control --load $UE4_GAMS/Config/UnrealGAMS-OSC.json -d --send 127.0.0.1:5555 --port 7777
+./open-stage-control --load $UE4_GAMS/Config/UnrealGAMS-OSC.json -d --send 127.0.0.1:5555 --port 8080
 ```
 
 Or use your favorite OSC controller.
@@ -69,7 +69,6 @@ XY velocity:
 
 Z velocity:
 `/agent/0/velocity/z [f32]`
-
 
 ### Outputs:
 
