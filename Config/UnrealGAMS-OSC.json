@@ -32,8 +32,8 @@
       "widgets": [
         {
           "type": "panel",
-          "top": 300,
-          "left": 20,
+          "top": 340,
+          "left": 10,
           "id": "outputs",
           "linkId": "",
           "width": 480,
@@ -95,11 +95,11 @@
         },
         {
           "type": "panel",
-          "top": 10,
-          "left": 40,
+          "top": 60,
+          "left": 10,
           "id": "Controls",
           "linkId": "",
-          "width": 440,
+          "width": 480,
           "height": 270,
           "label": "auto",
           "color": "auto",
@@ -196,6 +196,25 @@
             }
           ],
           "tabs": []
+        },
+        {
+          "type": "text",
+          "top": 10,
+          "left": 10,
+          "id": "Agent 0",
+          "linkId": "",
+          "width": 480,
+          "height": 40,
+          "label": false,
+          "color": "auto",
+          "css": "",
+          "vertical": false,
+          "wrap": false,
+          "align": "",
+          "default": "",
+          "value": "",
+          "address": "/agent/id",
+          "preArgs": ""
         }
       ],
       "tabs": [],
