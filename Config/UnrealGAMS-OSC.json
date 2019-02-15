@@ -711,6 +711,69 @@
     },
     {
       "type": "tab",
+      "id": "human",
+      "linkId": "",
+      "label": "auto",
+      "color": "auto",
+      "css": "",
+      "default": [
+        0,
+        0
+      ],
+      "value": "",
+      "precision": 2,
+      "address": "/tab_1",
+      "preArgs": "",
+      "target": "",
+      "bypass": false,
+      "variables": "@{parent.variables}",
+      "widgets": [
+        {
+          "type": "xy",
+          "top": 0,
+          "left": 0,
+          "id": "displacement",
+          "linkId": "",
+          "width": "auto",
+          "height": "auto",
+          "label": "auto",
+          "color": "auto",
+          "css": "",
+          "pointSize": 20,
+          "snap": false,
+          "spring": true,
+          "pips": true,
+          "rangeX": {
+            "min": -1,
+            "max": 1
+          },
+          "rangeY": {
+            "min": -1,
+            "max": 1
+          },
+          "logScaleX": false,
+          "logScaleY": false,
+          "input": true,
+          "doubleTap": false,
+          "default": [
+            0,
+            0
+          ],
+          "value": "",
+          "precision": 2,
+          "address": "/agent/velocity/xy",
+          "preArgs": "",
+          "target": "",
+          "bypass": false,
+          "touchAddress": "",
+          "split": false
+        }
+      ],
+      "tabs": [],
+      "scroll": true
+    },
+    {
+      "type": "tab",
       "id": "satellite",
       "linkId": "",
       "label": "auto",
