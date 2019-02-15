@@ -32,7 +32,7 @@
       "widgets": [
         {
           "type": "panel",
-          "top": 290,
+          "top": 330,
           "left": 10,
           "id": "outputs",
           "linkId": "",
@@ -95,7 +95,7 @@
         },
         {
           "type": "panel",
-          "top": 10,
+          "top": 50,
           "left": 10,
           "id": "Controls",
           "linkId": "",
@@ -193,6 +193,25 @@
             }
           ],
           "tabs": []
+        },
+        {
+          "type": "text",
+          "top": 10,
+          "left": 10,
+          "id": "Agent 1",
+          "linkId": "",
+          "width": 480,
+          "height": 40,
+          "label": false,
+          "color": "auto",
+          "css": "",
+          "vertical": false,
+          "wrap": false,
+          "align": "",
+          "default": "",
+          "value": "",
+          "address": "/text_1",
+          "preArgs": ""
         }
       ],
       "tabs": [],
