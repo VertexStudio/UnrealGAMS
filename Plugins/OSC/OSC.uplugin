@@ -20,5 +20,5 @@
 		}
 	],
 
-	"CanContainContent" : false
+	"CanContainContent" : true
 }
