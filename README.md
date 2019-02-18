@@ -15,8 +15,8 @@ For more info visit [Building on Linux](https://wiki.unrealengine.com/Building_O
 ### Git Large File Storage (Git LFS)
 
 ```
-curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
-git lfs install
+sudo apt-get install git-lfs
+git-lfs install
 ```
 
 For more info visit [Git LFS](https://git-lfs.github.com/)
