@@ -70,8 +70,11 @@ XY velocity:
 Z velocity:
 `/agent/0/velocity/z [f32]`
 
+Yaw:
+`/agent/0/yaw [f32]`
+
 ### Outputs:
 
-Vector3 Position: `/agent/0/pos/xyz [f32,f32,f32]`
+Vector3 Position: `/agent/0/pos [f32,f32,f32]`
 
-Quaternion Rotation: `/agent/0/pos/xyz [f32,f32,f32,f32]`
+Quaternion Rotation: `/agent/0/rot [f32,f32,f32]`
