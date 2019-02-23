@@ -77,4 +77,12 @@ DerivedDataCache/*
 /.vscode
 /*.code-workspace
 /Makefile
-Content/Environments
+/Content/Environments
+/Content/AutomotiveMaterials
+/Content/Demos
+/Content/SnappyRoads
+/SnappyRoads
+/open-stage-control
+/out
+
+
