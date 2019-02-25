@@ -78,3 +78,20 @@ Yaw:
 Vector3 Position: `/agent/0/pos [f32,f32,f32]`
 
 Quaternion Rotation: `/agent/0/rot [f32,f32,f32]`
+
+## Spawning Quadcopters
+
+Sending OSC message to `/spawn/quadcopter` address. The message must be a blob containing a string serialized JSON structure like the following:
+
+```
+{
+  "id": 0,
+  "port": 8000,
+  "location": {
+    "x": 0, "y": 0, "z": 0
+  },
+  "rotation": {
+    "x": 0, "y": 0, "z": 0
+  }
+}
+```
