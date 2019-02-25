@@ -71,7 +71,7 @@ Z velocity:
 `/agent/0/velocity/z [f32]`
 
 Yaw:
-`/agent/0/yaw [f32]`
+`/agent/0/velocity/yaw [f32]`
 
 ### Outputs:
 

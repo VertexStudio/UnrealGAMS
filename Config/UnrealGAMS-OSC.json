@@ -226,7 +226,7 @@
               "default": 0,
               "value": "",
               "precision": 2,
-              "address": "/agent/0/yaw",
+              "address": "/agent/0/velocity/yaw",
               "preArgs": "",
               "target": "",
               "bypass": false,
