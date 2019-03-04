@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "DynamicsCommon.h"
 
 float UDynamicsCommon::MeanOfFloatArray(const TArray<float> &Samples)
