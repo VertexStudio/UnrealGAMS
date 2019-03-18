@@ -8,10 +8,57 @@
 #include "PhysicsEngine/BodyInstance.h"
 #include "Engine/World.h"
 
-#include "flightmodelcomponent.h"
-
 #include "AerodynamicsComponent.generated.h"
 
+
+DECLARE_STATS_GROUP(TEXT("AerodynamicsModel"), STATGROUP_Aerodynamics, STATCAT_Advanced);
+
+struct FAerodynamicsArchive : public FObjectAndNameAsStringProxyArchive {
+	FAerodynamicsArchive(FArchive& InInnerArchive, bool bInLoadIfFindFails) : FObjectAndNameAsStringProxyArchive(InInnerArchive, bInLoadIfFindFails){ ArIsSaveGame = true; }
+};
+
+USTRUCT(BlueprintType)
+struct FGuidedPIDStruct
+{
+	GENERATED_USTRUCT_BODY()
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "GuidedPIDStruct", meta =(ToolTip="Pitch Proportional")) float PitchP;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "GuidedPIDStruct", meta =(ToolTip="Pitch Integral")) float PitchI;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "GuidedPIDStruct", meta =(ToolTip="Pitch Derivative")) float PitchD;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "GuidedPIDStruct", meta =(ToolTip="Yaw Proportional")) float YawP;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "GuidedPIDStruct", meta =(ToolTip="Yaw Integral")) float YawI;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "GuidedPIDStruct", meta =(ToolTip="Yaw Derivative")) float YawD;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "GuidedPIDStruct", meta =(ToolTip="Roll Proportional")) float RollP;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "GuidedPIDStruct", meta =(ToolTip="Roll Integral")) float RollI;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "GuidedPIDStruct", meta =(ToolTip="Roll Derivative")) float RollD;
+};
+
+USTRUCT(BlueprintType)
+struct FPYRStruct
+{
+	GENERATED_USTRUCT_BODY()
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "PYRStruct") UCurveFloat *Pitch;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "PYRStruct") UCurveFloat *Yaw;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "PYRStruct") UCurveFloat *Roll;
+};
+
+UENUM(BlueprintType)
+enum class EGetDataFormat : uint8
+{
+	GDF_UU UMETA(DisplayName = "UnrealUnits"),
+	GDF_Metric UMETA(DisplayName = "Metric"),
+	GDF_Imperial UMETA(DisplayName = "Imperial"),
+	GDF_Nautical UMETA(DisplayName = "Nautical")
+};
+
+UENUM(BlueprintType)
+enum class EAtmosphereType : uint8
+{
+	AT_Constant UMETA(DisplayName = "Constant"),
+	AT_Curve UMETA(DisplayName = "Density Curve"),
+	AT_Earth UMETA(DisplayName = "Earth/IGL")
+};
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class EASYFM_API UAerodynamicsComponent : public USceneComponent
@@ -50,16 +97,16 @@ public:
 		float &OutTemperature
 		) const;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "easyFM", meta =(ToolTip="Disable to turn off all forces and replication")) bool Enabled = true;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "easyFM", meta =(ToolTip="Use transformation of this component instead of parent body to determine forward direction etc" )) bool UseThisComponentTransform = false;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "easyFM", meta =(ToolTip="Scale all linear forces with mass of the parent body, when enabled linear acceleration (lift etc) is the same regardless of the mass")) bool ScaleWithMass;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "easyFM", meta =(ToolTip="Scale all angular forces with inertia tensor of the parent body, when enabled angular acceleration (stability, damping etc) is the same regardless of mass and dimensons")) bool ScaleWithMomentOfInertia;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "easyFM", meta =(ToolTip="Display lines indicating axis, direction")) bool DrawDebug;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "easyFM", meta =(ToolTip="Compensate for 1-frame lag of debug draw")) bool DebugLagCompensation = true;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "easyFM", Meta = (EditCondition = "DrawDebug", ToolTip="Show debug data")) bool PrintFMData;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "easyFM", Meta = (EditCondition = "DrawDebug", ClampMin = "0")) float DebugLineLength;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "easyFM", Meta = (EditCondition = "DrawDebug", ClampMin = "0")) float DebugForceScale = 0.01;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "easyFM", Meta = (EditCondition = "DrawDebug", ClampMin = "0")) float DebugTrailTime;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "Aerodynamics", meta =(ToolTip="Disable to turn off all forces and replication")) bool Enabled = true;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "Aerodynamics", meta =(ToolTip="Use transformation of this component instead of parent body to determine forward direction etc" )) bool UseThisComponentTransform = false;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "Aerodynamics", meta =(ToolTip="Scale all linear forces with mass of the parent body, when enabled linear acceleration (lift etc) is the same regardless of the mass")) bool ScaleWithMass;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "Aerodynamics", meta =(ToolTip="Scale all angular forces with inertia tensor of the parent body, when enabled angular acceleration (stability, damping etc) is the same regardless of mass and dimensons")) bool ScaleWithMomentOfInertia;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "Aerodynamics", meta =(ToolTip="Display lines indicating axis, direction")) bool DrawDebug;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "Aerodynamics", meta =(ToolTip="Compensate for 1-frame lag of debug draw")) bool DebugLagCompensation = true;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "Aerodynamics", Meta = (EditCondition = "DrawDebug", ToolTip="Show debug data")) bool PrintFMData;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "Aerodynamics", Meta = (EditCondition = "DrawDebug", ClampMin = "0")) float DebugLineLength;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "Aerodynamics", Meta = (EditCondition = "DrawDebug", ClampMin = "0")) float DebugForceScale = 0.01;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "Aerodynamics", Meta = (EditCondition = "DrawDebug", ClampMin = "0")) float DebugTrailTime;
 
 	UPROPERTY(Replicated, BlueprintReadWrite, EditAnywhere, SaveGame, Category = "World") FVector Wind;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, SaveGame, Category = "World", meta = (ToolTip = "Select atmosphere model")) EAtmosphereType AtmosphereType;

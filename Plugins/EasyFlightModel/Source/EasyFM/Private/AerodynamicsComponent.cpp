@@ -449,11 +449,11 @@ bool UAerodynamicsComponent::SecInputRep_Validate(float Flaps, float Spoiler, fl
 // replication
 /////////////////////////////////////////////////////////
 
-DECLARE_CYCLE_STAT(TEXT("EasyFM Net Move Broadcast"), STAT_MoveBroadcast, STATGROUP_EasyFM);
-DECLARE_CYCLE_STAT(TEXT("EasyFM Net Move Receive"), STAT_MoveReceive, STATGROUP_EasyFM);
-DECLARE_CYCLE_STAT(TEXT("EasyFM Net Move Smoothing"), STAT_MoveSmoothing, STATGROUP_EasyFM);
-DECLARE_CYCLE_STAT(TEXT("EasyFM Net GetReplicatedProps"), STAT_GetProps, STATGROUP_EasyFM);
-DECLARE_CYCLE_STAT(TEXT("EasyFM Net PreReplication"), STAT_PreRep, STATGROUP_EasyFM);
+DECLARE_CYCLE_STAT(TEXT("EasyFM Net Move Broadcast"), STAT_MoveBroadcast, STATGROUP_Aerodynamics);
+DECLARE_CYCLE_STAT(TEXT("EasyFM Net Move Receive"), STAT_MoveReceive, STATGROUP_Aerodynamics);
+DECLARE_CYCLE_STAT(TEXT("EasyFM Net Move Smoothing"), STAT_MoveSmoothing, STATGROUP_Aerodynamics);
+DECLARE_CYCLE_STAT(TEXT("EasyFM Net GetReplicatedProps"), STAT_GetProps, STATGROUP_Aerodynamics);
+DECLARE_CYCLE_STAT(TEXT("EasyFM Net PreReplication"), STAT_PreRep, STATGROUP_Aerodynamics);
 
 
 void UAerodynamicsComponent::GetLifetimeReplicatedProps(TArray< FLifetimeProperty > & OutLifetimeProps) const
@@ -1474,14 +1474,14 @@ void UAerodynamicsComponent::Simulate(FBodyInstance* bodyInst, float DeltaTime, 
 TArray<uint8> UAerodynamicsComponent::GetState(){
 	TArray<uint8> Data;
 	FMemoryWriter Writer = FMemoryWriter(Data);
-	FEasyFMArchive Ar = FEasyFMArchive(Writer,true);
+	FAerodynamicsArchive Ar = FAerodynamicsArchive(Writer,true);
 	Serialize(Ar);
 	return Data;
 }
 
 void UAerodynamicsComponent::SetState(TArray<uint8> Data) {
 	FMemoryReader Reader = FMemoryReader(Data);
-	FEasyFMArchive Ar = FEasyFMArchive(Reader, true);
+	FAerodynamicsArchive Ar = FAerodynamicsArchive(Reader, true);
 	Serialize(Ar);
 }
 
