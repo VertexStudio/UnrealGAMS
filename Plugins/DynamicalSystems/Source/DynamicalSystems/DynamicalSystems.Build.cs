@@ -23,20 +23,6 @@ public class DynamicalSystems : ModuleRules
         PublicDependencyModuleNames.AddRange(
             new string[]
             {
-                "Core",
-                "Projects",
-                "CoreUObject",
-                "Engine",
-                "InputCore",
-                "ImageWrapper",
-                "RenderCore",
-                "RHI",
-                "PhysXVehicles",
-                "PhysXVehicleLib",
-                "PhysX",
-                "APEX",
-                "Landscape"
-				// ... add other public dependencies that you statically link with here ...
 			}
             );
 
@@ -44,9 +30,10 @@ public class DynamicalSystems : ModuleRules
         PrivateDependencyModuleNames.AddRange(
             new string[]
             {
-                "UMG",
+                "CoreUObject",
+                "Engine",
                 "Slate",
-                "SlateCore"
+                "SlateCore",
 				// ... add private dependencies that you statically link with here ...	
 			}
             );
