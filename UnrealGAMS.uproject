@@ -12,11 +12,6 @@
 	],
 	"Plugins": [
 		{
-			"Name": "easyflightmodel",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/b8e53bee960e4cd0b74c0a02261cd957"
-		},
-		{
 			"Name": "BlueprintJson",
 			"Enabled": true,
 			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/f837e4835fbc434a853fe1ead2410b84"

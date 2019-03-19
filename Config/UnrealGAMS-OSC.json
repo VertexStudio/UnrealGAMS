@@ -410,11 +410,11 @@
           "meter": false,
           "compact": true,
           "dashed": false,
-          "snap": true,
-          "spring": true,
+          "snap": false,
+          "spring": false,
           "doubleTap": false,
           "range": {
-            "min": -1,
+            "min": 0,
             "max": 1
           },
           "steps": "",
@@ -861,7 +861,8 @@
                   "address": "/agent/velocity/Cannon",
                   "preArgs": "",
                   "target": "",
-                  "bypass": false
+                  "bypass": false,
+                  "value": ""
                 },
                 {
                   "type": "push",
@@ -882,7 +883,8 @@
                   "address": "/agent/velocity/Camera",
                   "preArgs": "",
                   "target": "",
-                  "bypass": false
+                  "bypass": false,
+                  "value": ""
                 },
                 {
                   "type": "push",
@@ -903,7 +905,8 @@
                   "address": "/agent/velocity/Smoke",
                   "preArgs": "",
                   "target": "",
-                  "bypass": false
+                  "bypass": false,
+                  "value": ""
                 }
               ],
               "scroll": true,
