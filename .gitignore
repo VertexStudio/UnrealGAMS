@@ -85,4 +85,13 @@ DerivedDataCache/*
 /open-stage-control
 /out
 /oscpack
-
+*.pri
+*.pro
+.idea
+.kdev4
+Releases
+CMakeLists.txt
+UnrealGAMS.kdev4
+UnrealGAMS.workspace
+UnrealGAMSCodeCompletionFolders.txt
+UnrealGAMSCodeLitePreProcessor.txt
