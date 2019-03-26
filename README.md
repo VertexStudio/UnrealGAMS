@@ -95,3 +95,28 @@ Sending OSC message to `/spawn/quadcopter` address. The message must be a blob c
   }
 }
 ```
+## Build a release
+
+Execute the `cook.sh` script.
+
+Usage:
+```
+cook.sh [RELEASE_VERSION] [PROJECT_NAME] [MAPS_TO_COOK] [WINDOW_RESOLUTION]
+```
+- **RELEASE_VERSION:** Version of the release. Default `1.0`.
+- **PROJECT_NAME:** Name of the UE4 project. By default, it takes the name of the current folder.
+- **MAPS_TO_COOK:** List of maps to cook. Each map name must be separted by a `+` character. Example: `GrassMountains+Desert`.
+- **WINDOW_RESOLUTION:** Dimensions of the window. Default dimensions `1024x576`.
+
+## Create a DLC
+
+1. Copy new content in the `Content` directory of the `LoadMap` plugin.
+2. Execute the `cook_dlc.sh` script.
+
+Usage:
+```
+cook_dlc.sh [BASED_ON_RELEASE_VERSION] [PROJECT_NAME] [DLC_NAME]
+```
+- **BASED_ON_RELEASE_VERSION:** Release version the DLC will be based on. Default `1.0`.
+- **PROJECT_NAME:** Name of the UE4 project. By default, it takes the name of the current folder.
+- **DLC_NAME:** Name of the generated `.pak` file (DLC). Default value is `DLC_based_on_{version it's based on}_{timestamp}`.
