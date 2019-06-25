@@ -75,9 +75,11 @@ Yaw:
 
 ### Outputs:
 
-Vector3 Position: `/agent/0/pos [f32,f32,f32]`
+Vector3 Position: `/agent/{agentId}/pos [f32,f32,f32]`
 
-Quaternion Rotation: `/agent/0/rot [f32,f32,f32]`
+Quaternion Rotation: `/agent/{agentId}/rot [f32,f32,f32]`
+
+Pose (Position(x, y, z),Quaternion(x, y, z, w)): `/agent/{agentId}/pose [f32,f32,f32,f32,f32,f32,f32]`
 
 ## Spawning Quadcopters
 
