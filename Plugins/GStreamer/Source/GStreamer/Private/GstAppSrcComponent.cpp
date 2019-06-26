@@ -7,7 +7,7 @@
 UGstAppSrcComponent::UGstAppSrcComponent()
 {
 	PrimaryComponentTick.bCanEverTick = true;
-	PrimaryComponentTick.TickInterval = 0.1;
+	PrimaryComponentTick.TickInterval = 0.0;
 }
 
 void UGstAppSrcComponent::UninitializeComponent()

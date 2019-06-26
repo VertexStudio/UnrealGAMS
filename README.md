@@ -102,7 +102,7 @@ Sending OSC message to `/spawn/quadcopter` address. The message must be a blob c
 **Note:** GStreamer is required. Official [installation instructions](https://gstreamer.freedesktop.org/documentation/installing/on-linux.html?gi-language=c).
 
 Bash GStreamer pipeline:  
-`gst-launch-1.0 -v tcpclientsrc host=127.0.0.1 port=5000 ! rawvideoparse width=1920 height=1080 framerate=10/1 format=8 ! videoconvert ! autovideosink`
+`gst-launch-1.0 -v tcpclientsrc host=127.0.0.1 port=5000 ! rawvideoparse width=1920 height=1080 framerate=60/1 format=8 ! videoconvert ! fpsdisplaysink sync=false`
 
 ## Build a release
 
