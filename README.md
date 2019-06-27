@@ -75,9 +75,11 @@ Yaw:
 
 ### Outputs:
 
-Vector3 Position: `/agent/0/pos [f32,f32,f32]`
+Vector3 Position: `/agent/{agentId}/pos [f32,f32,f32]`
 
-Quaternion Rotation: `/agent/0/rot [f32,f32,f32]`
+Quaternion Rotation: `/agent/{agentId}/rot [f32,f32,f32]`
+
+Pose (Position(x, y, z),Quaternion(x, y, z, w)): `/agent/{agentId}/pose [f32,f32,f32,f32,f32,f32,f32]`
 
 ## Spawning Quadcopters
 
@@ -95,6 +97,13 @@ Sending OSC message to `/spawn/quadcopter` address. The message must be a blob c
   }
 }
 ```
+
+# Consume the camera feed
+**Note:** GStreamer is required. Official [installation instructions](https://gstreamer.freedesktop.org/documentation/installing/on-linux.html?gi-language=c).
+
+Bash GStreamer pipeline:  
+`gst-launch-1.0 -v tcpclientsrc host=127.0.0.1 port=5000 ! rawvideoparse width=1920 height=1080 framerate=60/1 format=8 ! videoconvert ! fpsdisplaysink sync=false`
+
 ## Build a release
 
 Execute the `cook.sh` script.
