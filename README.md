@@ -1,3 +1,12 @@
+# Simbotic GAMS
+Simulation Engine based on UE4. 
+<p align="center">
+  <img src="docs/multiagent.gif" width="480"/>
+</p>
+<p align="center">
+  <img src="docs/fixedwing.gif" width="480"/>
+</p>
+
 ## Setup Instructions
 
 ### Install UnrealEngine
@@ -51,6 +60,10 @@ Run:
 ```
 
 # Using Quadcopter OSC
+
+<p align="center">
+  <img src="docs/osc.gif">
+</p>
 
 In UnrealEngine open and play map `Robots/Quadcopter/Maps/MAP_Quadcopter`.
 
